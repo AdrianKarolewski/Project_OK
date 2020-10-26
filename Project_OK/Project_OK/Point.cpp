@@ -18,3 +18,7 @@ std::string Point::Get_name()
 {
 	return m_name;
 }
+double Point::Count_distanse(const Point& other)
+{
+	return sqrt((other.m_x - m_x) * (other.m_x - m_x) + (other.m_y - m_y) * (other.m_y - m_y));
+}

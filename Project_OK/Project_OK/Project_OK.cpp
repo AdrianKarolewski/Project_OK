@@ -7,9 +7,9 @@ void print_menu(const Map & m)
     std::cout <<"*********************************" << std::endl;
     std::cout << std::endl << "Aktualne punkty " << std::endl;
     m.Print_points();
-    std::cout << std::endl << "Aktualne aktualna droga " << std::endl;
+    std::cout << std::endl << "Aktualne najlepsza droga " << std::endl;
     std::cout << "*********************************" << std::endl;
-
+    m.Print_path_force();
     std::cout << "1.Dodaj punkt do mapy" << std::endl;
     std::cout << "2.Usun punkt z mapy" << std::endl;
     std::cout << "3.Aktualizuj droge" << std::endl;
@@ -35,7 +35,7 @@ void del_point(Map& m)
 }
 void count_path_force_alg(Map& m)
 {
-
+    m.Count_path();
 }
 int main()
 {
