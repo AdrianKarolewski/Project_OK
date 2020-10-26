@@ -42,17 +42,15 @@ void Map::Count_path()
 		return;
 	}
 	best_path_force.clear();
-
 	std::vector<Point> h_v_points = m_v_points;
-
 	best_path_force.push_back(h_v_points[0].Get_name());
 
-	double min_distans = 100000000000000000;
 	double current_distance = 0;
 	int current_point = 0;
 	int next_point = 0;
 	while (h_v_points.size() > 1)
 	{
+		double min_distans = 100000000000000000;
 		for (int j = 0; j < h_v_points.size(); j++)
 		{
 			if (j != current_point)
@@ -67,6 +65,7 @@ void Map::Count_path()
 		}
 		best_path_force.push_back(h_v_points[next_point].Get_name());
 		h_v_points.erase(h_v_points.begin() + current_point);
+		std::cout << std::endl;
 		if (current_point < next_point)
 		{
 			next_point--;

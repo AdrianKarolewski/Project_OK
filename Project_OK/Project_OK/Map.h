@@ -7,7 +7,6 @@ class Map
 private:
 	std::vector<Point> m_v_points;
 	std::vector<std::string> best_path_force;
-
 	std::string m_name;
 public:
 	Map(std::string m_name);

@@ -1,1 +1,8 @@
-﻿  Project_OK.vcxproj -> D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Debug\Project_OK.exe
+﻿  Map.cpp
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(29,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(31,40): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(54,21): warning C4018: '<': signed/unsigned mismatch
+  Project_OK.cpp
+  Generating Code...
+  Project_OK.vcxproj -> D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Debug\Project_OK.exe
