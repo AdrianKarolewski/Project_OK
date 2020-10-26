@@ -14,6 +14,8 @@ public:
 	void Print_path_force() const;
 	void Add_point(std::string name, int &x, int& y);
 	void Del_point(std::string name);
+	void Random_begin();
+	void Custom_begin(std::string name);
 	void Count_path();
 };
 

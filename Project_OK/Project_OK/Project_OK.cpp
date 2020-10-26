@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "Map.h"
 
 void print_menu(const Map & m)
@@ -13,6 +12,10 @@ void print_menu(const Map & m)
     std::cout << "1.Dodaj punkt do mapy" << std::endl;
     std::cout << "2.Usun punkt z mapy" << std::endl;
     std::cout << "3.Aktualizuj droge" << std::endl;
+    std::cout << "4.Dodaj wiele wierzcholkow" << std::endl;
+    std::cout << "5.Wylosuj wierzcholek startowy" << std::endl;
+    std::cout << "6.Ustal wierzcholek startowy" << std::endl;
+    std::cout << "Komenda e konczy dzialanie programu" << std::endl;
 
 }
 void add_point(Map& m)
@@ -37,6 +40,33 @@ void count_path_force_alg(Map& m)
 {
     m.Count_path();
 }
+void add_multiple(Map& m)
+{
+    int rows;
+    int x, y;
+    std::string name;
+    printf("Podaj ilosc dodawanych wierzcholkow: ");
+    std::cin >> rows;
+    printf("Podaj punkty w formacie <nazwa> <x> <y>\n");
+    for (int i = 0; i < rows; i++)
+    {
+        std::cin >> name;
+        std::cin >> x;
+        std::cin >> y;
+        m.Add_point(name, x, y);
+    }
+}
+void random_begin(Map& m)
+{
+    m.Random_begin();
+}
+void custom_begin(Map& m)
+{
+    printf("Podaj nazwe wierzcholka startowego: ");
+    std::string first;
+    std::cin >> first;
+    m.Custom_begin(first);
+}
 int main()
 {
     char choice;
@@ -57,7 +87,20 @@ int main()
         case '3':
             count_path_force_alg(*k_map);
             break;
+        case '4':
+            add_multiple(*k_map);
+            break;
+        case '5':
+            random_begin(*k_map);
+            break;
+        case '6':
+            custom_begin(*k_map);
+            break;
         default:
+            break;
+        }
+        if (choice == 'e')
+        {
             break;
         }
     }

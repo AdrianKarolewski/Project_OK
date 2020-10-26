@@ -1,4 +1,5 @@
 #include "Map.h"
+#include <ctime>
 
 Map::Map(std::string name)
 {
@@ -33,6 +34,38 @@ void Map::Del_point(std::string name)
 			m_v_points.erase(m_v_points.begin() + i);
 			goto again;
 		}
+	}
+}
+void Map::Random_begin()
+{
+	int size = m_v_points.size();
+	srand(time(NULL));
+	int NewFirst = rand()%size;
+	std::swap(m_v_points[0], m_v_points[NewFirst]);
+
+}
+void Map::Custom_begin(std::string nazwa)
+{
+	int first = -1;
+	std::cout << nazwa << std::endl;
+	std::string a = nazwa;
+	std::cout << a<<std::endl;
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		if (m_v_points[i].Get_name() == a);
+		{
+			std::cout << m_v_points[i].Get_name() << std::endl;
+			std::cout << i << std::endl;;
+			first = i;
+		}
+	}
+	if (first == -1)
+	{
+		printf("Nie znaleziono wierzcholka o podanej nazwie!\n");
+	}
+	else
+	{
+		std::swap(m_v_points[0], m_v_points[first]);
 	}
 }
 void Map::Count_path()
