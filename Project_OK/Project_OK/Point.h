@@ -15,6 +15,8 @@ public:
 	Point(std::string name,int x, int y);
 	~Point();
 	std::string Get_name();
+	double Get_x() const;
+	double Get_y() const;
 	double Count_distanse(const Point& other);
 };
 

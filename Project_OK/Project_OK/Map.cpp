@@ -1,6 +1,29 @@
 #include "Map.h"
 #include <ctime>
-
+#include <cstring>
+int random(int max)
+{
+	srand(time(NULL));
+	return rand() % (max + 1);
+}
+bool equals_string(std::string s1, std::string s2)
+{
+	if (s1.size() != s2.size())
+	{
+		return 0;
+	}
+	else
+	{
+		for (int i = 0; i < s1.size(); i++)
+		{
+			if (s1[i] != s2[i])
+			{
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
 Map::Map(std::string name)
 {
 	m_name = name;
@@ -20,9 +43,20 @@ void Map::Print_path_force() const
 	}
 	std::cout << std::endl;
 }
-void Map::Add_point(std::string name,int &x, int &y)
+bool Map::Add_point(std::string name,int &&x, int &&y)
 {
+	for (const Point & p : m_v_points)
+	{
+		if (p.Get_x() == x)
+		{
+			if (p.Get_y() == y)
+			{
+				return 0;
+			}
+		}
+	}
 	m_v_points.push_back(Point(name, x, y));
+	return 1;
 }
 void Map::Del_point(std::string name)
 {
@@ -38,24 +72,16 @@ void Map::Del_point(std::string name)
 }
 void Map::Random_begin()
 {
-	int size = m_v_points.size();
 	srand(time(NULL));
-	int NewFirst = rand()%size;
-	std::swap(m_v_points[0], m_v_points[NewFirst]);
-
+	std::swap(m_v_points[0], m_v_points[static_cast<int>(rand() % m_v_points.size())]);
 }
 void Map::Custom_begin(std::string nazwa)
 {
-	int first = -1;
-	std::cout << nazwa << std::endl;
-	std::string a = nazwa;
-	std::cout << a<<std::endl;
+	int first{ -1 };
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
-		if (m_v_points[i].Get_name() == a);
-		{
-			std::cout << m_v_points[i].Get_name() << std::endl;
-			std::cout << i << std::endl;;
+		if (equals_string(m_v_points[i].Get_name(), nazwa))
+		{	
 			first = i;
 		}
 	}
@@ -104,5 +130,16 @@ void Map::Count_path()
 			next_point--;
 		}
 		current_point = next_point;
+	}
+}
+void Map::Del_all_points()
+{
+	m_v_points.clear();
+}
+void Map::Generating_instance(const int &how_m, const int &max_x, const int &max_y)
+{
+	for (int i = 0; i < how_m; i++)
+	{
+		while (!(Add_point(std::to_string(i), (random(max_x) + (random(i+1) + 1)) % max_x, (random(max_y) * random (i+3)) % max_y)));
 	}
 }

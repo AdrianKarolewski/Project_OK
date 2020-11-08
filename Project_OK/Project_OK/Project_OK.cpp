@@ -15,6 +15,8 @@ void print_menu(const Map & m)
     std::cout << "4.Dodaj wiele wierzcholkow" << std::endl;
     std::cout << "5.Wylosuj wierzcholek startowy" << std::endl;
     std::cout << "6.Ustal wierzcholek startowy" << std::endl;
+    std::cout << "7.Generuj losowa instancje poczatkowa" << std::endl;
+    std::cout << "8.Usun wszystkie punkty" << std::endl;
     std::cout << "Komenda e konczy dzialanie programu" << std::endl;
 
 }
@@ -26,9 +28,8 @@ void add_point(Map& m)
     std::cout << "Podaj nazwe: " << std::endl; std::cin >> name;
     std::cout << "Podaj wsp x: " << std::endl; std::cin >> x;
     std::cout << "Podaj wsp y: " << std::endl; std::cin >> y;
-    m.Add_point(name, x, y);
-    
-
+    m.Add_point(name, std::move(x), std::move(y));
+ 
 }
 void del_point(Map& m)
 {
@@ -53,7 +54,7 @@ void add_multiple(Map& m)
         std::cin >> name;
         std::cin >> x;
         std::cin >> y;
-        m.Add_point(name, x, y);
+        m.Add_point(name, std::move(x), std::move(y));
     }
 }
 void random_begin(Map& m)
@@ -67,11 +68,26 @@ void custom_begin(Map& m)
     std::cin >> first;
     m.Custom_begin(first);
 }
+void del_all_p(Map& m)
+{
+    m.Del_all_points();
+}
+void gen_instance(Map& m)
+{
+    int h_much, m_x, m_y;
+    printf("Podaj ilosc dodawanych wierzcholkow: ");
+    std::cin >> h_much;
+    printf("Podaj max x: ");
+    std::cin >> m_x;
+    printf("Podaj max y: ");
+    std::cin >> m_y;
+    m.Generating_instance(h_much, m_x, m_y);
+    m.Print_points();
+}
 int main()
 {
     char choice;
     Map* k_map = new Map("Komiwoja¿er");
-
     while (true)
     {
         print_menu(*k_map);
@@ -95,6 +111,12 @@ int main()
             break;
         case '6':
             custom_begin(*k_map);
+            break;
+        case '7':
+            gen_instance(*k_map);
+            break;
+        case '8':
+            del_all_p(*k_map);
             break;
         default:
             break;

@@ -22,3 +22,11 @@ double Point::Count_distanse(const Point& other)
 {
 	return sqrt((other.m_x - m_x) * (other.m_x - m_x) + (other.m_y - m_y) * (other.m_y - m_y));
 }
+double Point::Get_x() const
+{
+	return m_x;
+}
+double Point::Get_y() const
+{
+	return m_y;
+}
