@@ -5,7 +5,7 @@ void print_menu(const Map & m)
 {
     std::cout <<"*********************************" << std::endl;
     std::cout << std::endl << "Aktualne punkty " << std::endl;
-    m.Print_points();
+    std::cout << m;
     std::cout << std::endl << "Aktualne najlepsza droga " << std::endl;
     std::cout << "*********************************" << std::endl;
     m.Print_path_force();
@@ -40,8 +40,7 @@ void del_point(Map& m)
 void count_path_force_alg(Map& m)
 {
     m.Count_path();
-}
-void add_multiple(Map& m)
+}void add_multiple(Map& m)
 {
     int rows;
     int x, y;
@@ -82,7 +81,6 @@ void gen_instance(Map& m)
     printf("Podaj max y: ");
     std::cin >> m_y;
     m.Generating_instance(h_much, m_x, m_y);
-    m.Print_points();
 }
 int main()
 {

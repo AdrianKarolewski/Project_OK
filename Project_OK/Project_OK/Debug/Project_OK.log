@@ -1,10 +1,10 @@
 ﻿  Map.cpp
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(6,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(17,21): warning C4018: '<': signed/unsigned mismatch
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(40,20): warning C4018: '<': signed/unsigned mismatch
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(64,20): warning C4018: '<': signed/unsigned mismatch
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(66,40): warning C4390: ';': empty controlled statement found; is this the intent?
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(75,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(81,20): warning C4018: '<': signed/unsigned mismatch
-D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(113,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(8,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(27,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(45,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(74,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(76,40): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(85,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(91,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Project_OK\Map.cpp(124,21): warning C4018: '<': signed/unsigned mismatch
   Project_OK.vcxproj -> D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt_OK\Project_OK\Debug\Project_OK.exe

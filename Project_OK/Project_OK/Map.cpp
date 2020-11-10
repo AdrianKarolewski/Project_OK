@@ -1,10 +1,19 @@
 #include "Map.h"
 #include <ctime>
 #include <cstring>
+
 int random(int max)
 {
 	srand(time(NULL));
 	return rand() % (max + 1);
+}
+std::ostream& operator<<(std::ostream& o, const Map& m)
+{
+	for (const Point& p : m.m_v_points)
+	{
+		std::cout << p;
+	}
+	return o;
 }
 bool equals_string(std::string s1, std::string s2)
 {
@@ -24,24 +33,23 @@ bool equals_string(std::string s1, std::string s2)
 	}
 	return 1;
 }
-Map::Map(std::string name)
+Map::Map(std::string name) : 
+	m_name(name),
+	stopper(new Timer())
 {
-	m_name = name;
-}
-void Map::Print_points() const
-{
-	for (const Point & p : m_v_points)
-	{
-		std::cout << p;
-	}
+
 }
 void Map::Print_path_force() const
 {
 	for (int i = 0; i < best_path_force.size(); i++)
 	{
-		std::cout << best_path_force[i]<<" ";
+		std::cout << best_path_force[i] << " ";
 	}
-	std::cout << std::endl;
+	if (best_path_force.size() > 0)
+	{
+		std::cout << std::endl;
+		std::cout << " czas: " << *stopper;
+	}	
 }
 bool Map::Add_point(std::string name,int &&x, int &&y)
 {
@@ -96,6 +104,8 @@ void Map::Custom_begin(std::string nazwa)
 }
 void Map::Count_path()
 {
+	stopper->Reset_timer();
+	stopper->Start_timer();
 	if (m_v_points.size() < 1)
 	{
 		return;
@@ -103,7 +113,6 @@ void Map::Count_path()
 	best_path_force.clear();
 	std::vector<Point> h_v_points = m_v_points;
 	best_path_force.push_back(h_v_points[0].Get_name());
-
 	double current_distance = 0;
 	int current_point = 0;
 	int next_point = 0;
@@ -131,6 +140,7 @@ void Map::Count_path()
 		}
 		current_point = next_point;
 	}
+	stopper->Stop_timer();
 }
 void Map::Del_all_points()
 {
