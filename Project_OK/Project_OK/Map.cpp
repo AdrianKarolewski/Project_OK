@@ -1,6 +1,7 @@
 #include "Map.h"
 #include <ctime>
 #include <cstring>
+#include <fstream>
 
 int random(int max)
 {
@@ -48,7 +49,7 @@ void Map::Print_path_force() const
 	if (best_path_force.size() > 0)
 	{
 		std::cout << std::endl;
-		std::cout << " czas: " << *stopper;
+		std::cout << " czas: " << *stopper << " dystans: "<<best_distans;
 	}	
 }
 bool Map::Add_point(std::string name,int &&x, int &&y)
@@ -113,6 +114,7 @@ void Map::Count_path()
 	best_path_force.clear();
 	std::vector<Point> h_v_points = m_v_points;
 	best_path_force.push_back(h_v_points[0].Get_name());
+	double distance_result = 0;
 	double current_distance = 0;
 	int current_point = 0;
 	int next_point = 0;
@@ -131,6 +133,7 @@ void Map::Count_path()
 				}
 			}
 		}
+		best_distans += min_distans;
 		best_path_force.push_back(h_v_points[next_point].Get_name());
 		h_v_points.erase(h_v_points.begin() + current_point);
 		std::cout << std::endl;
@@ -148,8 +151,70 @@ void Map::Del_all_points()
 }
 void Map::Generating_instance(const int &how_m, const int &max_x, const int &max_y)
 {
+	std::fstream file;
+	file.open("dane.txt", std::ios_base::trunc);
+	file <<how_m<< std::endl;
+	int x{ 0 };
+	int y{ 0 };
 	for (int i = 0; i < how_m; i++)
 	{
-		while (!(Add_point(std::to_string(i), (random(max_x) + (random(i+1) + 1)) % max_x, (random(max_y) * random (i+3)) % max_y)));
+		x = (random(max_x) + (random(i + 1) + 1) % max_x);
+		y = ((random(max_y) * random(i + 3)) % max_y);
+		while (!(Add_point(std::to_string(i + 1),std::move(x),std::move(y) )))
+		{
+			x = (random(max_x) + (random(i + 1) + 1) % max_x);
+			y = ((random(max_y) * random(i + 3)) % max_y);
+		}
+		file << i+1<<" "<<x<<" "<<y<< std::endl;
 	}
+	file.close();
+}
+void Map::Read_instance()
+{
+	std::fstream file;
+	file.open("dane.txt", std::ios_base::in);
+
+	int how_m;
+	int wsp[2]{ 0,0 };
+	int p{ 0 };
+
+	std::string help_s;
+
+	std::getline(file, help_s);
+	how_m = stoi(help_s);
+	
+	while (std::getline(file, help_s))
+	{
+		std::cout << help_s;
+		int j = 0;
+		std::string h_string = "";
+		for (int i = 0; i < help_s.size(); i++)
+		{
+			if (help_s[i] != ' ')
+			{
+				h_string += help_s[i];
+			}	
+			if ((help_s[i] == ' ')||(i == help_s.size() - 1))
+			{
+				if (j == 0)
+				{
+					p = stoi(h_string);
+					h_string = "";
+					j++;
+				}
+				else
+				{
+					wsp[j - 1] = stoi(h_string);
+					h_string = "";
+					j++;
+				}
+				if (j == 3)
+				{
+					break;
+				}			
+			}
+		}
+		Add_point(std::to_string(p),std::move(wsp[0]),std::move(wsp[1]));
+	}
+	file.close();
 }

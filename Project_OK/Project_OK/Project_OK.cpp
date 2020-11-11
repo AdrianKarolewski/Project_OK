@@ -17,6 +17,7 @@ void print_menu(const Map & m)
     std::cout << "6.Ustal wierzcholek startowy" << std::endl;
     std::cout << "7.Generuj losowa instancje poczatkowa" << std::endl;
     std::cout << "8.Usun wszystkie punkty" << std::endl;
+    std::cout << "9.Wczytaj wierzcholki z pliku dane" << std::endl;
     std::cout << "Komenda e konczy dzialanie programu" << std::endl;
 
 }
@@ -85,6 +86,7 @@ void gen_instance(Map& m)
 int main()
 {
     char choice;
+
     Map* k_map = new Map("Komiwoja¿er");
     while (true)
     {
@@ -116,6 +118,9 @@ int main()
         case '8':
             del_all_p(*k_map);
             break;
+        case '9':
+            k_map->Read_instance();
+        break;
         default:
             break;
         }

@@ -10,6 +10,7 @@ private:
 	std::vector<std::string> best_path_force;
 	std::string m_name;
 	Timer* stopper;
+	double best_distans{ 0 };
 public:
 	friend std::ostream& operator<<(std::ostream& o, const Map & m);
 
@@ -22,5 +23,6 @@ public:
 	void Custom_begin(std::string name);
 	void Count_path();
 	void Generating_instance(const int &how_m, const int &max_x, const int &max_y);
+	void Read_instance();
 };
 
