@@ -3,8 +3,8 @@
 #include <cstring>
 #include <fstream>
 const float pheromone_INIT = 0.1;
-const float pheromone_importance;
-const float visibility_importance;
+const float pheromone_importance = 0.1;
+const float distance_importance = 0.1;
 int random(int max)
 {
 	srand(time(NULL));
@@ -234,18 +234,18 @@ float** Map::Initialize_Pheromone(int vertex_count)
 }
 int Map::Next_Vertex(int ind, float ** pheromone, bool * visitted)
 {
-	float sum;
+	float suma = 0;
 	float* prob = new float[m_v_points.size()];
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
-		if(visitted[i])
-			sum += pow(pheromone[ind][i],pheromone_importance);
+		if (visitted[i])
+			suma += pow(pheromone[ind][i], pheromone_importance) * pow(m_v_points[ind].Count_distanse(m_v_points[i]), distance_importance);
 	}
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
 		if (i != ind && visitted[i])
 		{
-			prob[i] = pow(pheromone[ind][i], pheromone_importance)/sum;
+			prob[i] = (pow(pheromone[ind][i], pheromone_importance)*pow(m_v_points[ind].Count_distanse(m_v_points[i]), distance_importance))/suma;
 		}
 		else
 		{
@@ -253,6 +253,7 @@ int Map::Next_Vertex(int ind, float ** pheromone, bool * visitted)
 		}
 	}
 	delete[] prob;
+	return -1;
 }
 void Map::AntHill()
 {
