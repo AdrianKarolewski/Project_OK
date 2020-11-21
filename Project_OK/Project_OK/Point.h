@@ -2,13 +2,13 @@
 
 #include <iostream>
 #include <string>
+#include<vector>
 
 class Point
 {
 private:
 	int m_x = 0, m_y = 0;
 	std::string m_name;
-	
 public:
 	friend std::ostream& operator<<(std::ostream& o, const Point& p);
 

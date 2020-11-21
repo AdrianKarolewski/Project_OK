@@ -105,6 +105,7 @@ int main()
             break;
         case '4':
             add_multiple(*k_map);
+            k_map->AntHill();
             break;
         case '5':
             random_begin(*k_map);

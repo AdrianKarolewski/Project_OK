@@ -2,7 +2,9 @@
 #include <ctime>
 #include <cstring>
 #include <fstream>
-
+const float pheromone_INIT = 0.1;
+const float pheromone_importance;
+const float visibility_importance;
 int random(int max)
 {
 	srand(time(NULL));
@@ -217,4 +219,63 @@ void Map::Read_instance()
 		Add_point(std::to_string(p),std::move(wsp[0]),std::move(wsp[1]));
 	}
 	file.close();
+}
+float** Map::Initialize_Pheromone(int vertex_count)
+{
+	float** pheromone = new float* [vertex_count];
+	for (int i = 0; i < vertex_count; ++i)
+		pheromone[i] = new float[vertex_count];
+	for (int i = 0; i<vertex_count; i++)
+		for (int j = 0; j < vertex_count; j++)
+		{
+			pheromone[i][j] = pheromone_INIT;
+		}
+	return pheromone;
+}
+int Map::Next_Vertex(int ind, float ** pheromone, bool * visitted)
+{
+	float sum;
+	float* prob = new float[m_v_points.size()];
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		if(visitted[i])
+			sum += pow(pheromone[ind][i],pheromone_importance);
+	}
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		if (i != ind && visitted[i])
+		{
+			prob[i] = pow(pheromone[ind][i], pheromone_importance)/sum;
+		}
+		else
+		{
+			prob[i] = 0;
+		}
+	}
+	delete[] prob;
+}
+void Map::AntHill()
+{
+	int vertex_count = m_v_points.size();
+	std::cout << vertex_count << std::endl;
+	float ** pheromone = Initialize_Pheromone(vertex_count);
+	bool* visitted = new bool[vertex_count];
+	for (int i = 0; i < vertex_count; i++)
+	{
+		visitted[i] = false;
+	}
+	/*for (int i = 0; i < vertex_count; i++)
+	{
+		for (int j = 0; j < vertex_count; j++)
+		{
+			std::cout << pheromone[i][j]<<" ";
+		}
+		std::cout << std::endl;
+	}*/
+	for (int i = 0; i < vertex_count; i++)
+	{
+		delete[] pheromone[i];
+	}
+	delete[] pheromone;
+	delete[] visitted;
 }
