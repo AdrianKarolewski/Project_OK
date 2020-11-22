@@ -239,11 +239,12 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 {
 	double suma = 0;
 	double * prob = new double[m_v_points.size()];
+	double x;
 	for (int i = 0; i < m_v_points.size(); i++)//suma prawdopodobieñstw
 	{
-		if (!visitted[i])
+		if (i != ind && !visitted[i])
 		{
-			float x = m_v_points[ind].Count_distanse(m_v_points[i]);
+			x = 1/m_v_points[ind].Count_distanse(m_v_points[i]);
 			suma += pow(pheromone[ind][i], pheromone_importance) * pow(x, distance_importance);
 		}
 	}
@@ -251,7 +252,7 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 	{
 		if (i != ind && !visitted[i])
 		{
-			float x = m_v_points[ind].Count_distanse(m_v_points[i]);
+			x = 1/m_v_points[ind].Count_distanse(m_v_points[i]);
 			prob[i] = (pow(pheromone[ind][i], pheromone_importance)*pow(x, distance_importance))/suma;
 		}
 		else
