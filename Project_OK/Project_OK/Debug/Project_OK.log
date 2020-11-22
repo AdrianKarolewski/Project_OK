@@ -1,7 +1,5 @@
 ﻿  Map.cpp
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(5,33): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(6,39): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(7,38): warning C4305: "inicjowanie": obcięcie z "double" do "float"
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(10,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(29,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(47,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
@@ -11,8 +9,15 @@ C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(92,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(126,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(193,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(239,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(242,130): warning C4244: "+=": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(244,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(248,132): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(242,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(246,12): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(250,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(254,12): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(263,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(269,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(300,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(304,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(308,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(307,6): warning C4101: "next_vertex": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(315): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
   Project_OK.vcxproj -> C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Debug\Project_OK.exe

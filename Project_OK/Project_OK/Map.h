@@ -25,7 +25,7 @@ public:
 	void Generating_instance(const int &how_m, const int &max_x, const int &max_y);
 	void Read_instance();
 	void AntHill();
-	float** Initialize_Pheromone(int vertex_count);
-	int Next_Vertex(int ind, float ** pheromones, bool * visitted);
+	double** Initialize_Pheromone(int vertex_count);
+	int Next_Vertex(int ind, double ** pheromones, bool * visitted);
 };
 

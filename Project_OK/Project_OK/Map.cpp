@@ -3,8 +3,8 @@
 #include <cstring>
 #include <fstream>
 const float pheromone_INIT = 0.1;
-const float pheromone_importance = 0.1;
-const float distance_importance = 0.1;
+const float pheromone_importance = 1;
+const float distance_importance = 1;
 int random(int max)
 {
 	srand(time(NULL));
@@ -220,51 +220,109 @@ void Map::Read_instance()
 	}
 	file.close();
 }
-float** Map::Initialize_Pheromone(int vertex_count)
+ double** Map::Initialize_Pheromone(int vertex_count)
 {
-	float** pheromone = new float* [vertex_count];
+	double** pheromone = new double* [vertex_count];
 	for (int i = 0; i < vertex_count; ++i)
-		pheromone[i] = new float[vertex_count];
+		pheromone[i] = new double[vertex_count];
 	for (int i = 0; i<vertex_count; i++)
 		for (int j = 0; j < vertex_count; j++)
 		{
-			pheromone[i][j] = pheromone_INIT;
+			if (i != j)
+				pheromone[i][j] = pheromone_INIT;
+			else
+				pheromone[i][j] = 0;
 		}
 	return pheromone;
 }
-int Map::Next_Vertex(int ind, float ** pheromone, bool * visitted)
+int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 {
-	float suma = 0;
-	float* prob = new float[m_v_points.size()];
-	for (int i = 0; i < m_v_points.size(); i++)
+	double suma = 0;
+	double * prob = new double[m_v_points.size()];
+	for (int i = 0; i < m_v_points.size(); i++)//suma prawdopodobieñstw
 	{
-		if (visitted[i])
-			suma += pow(pheromone[ind][i], pheromone_importance) * pow(m_v_points[ind].Count_distanse(m_v_points[i]), distance_importance);
-	}
-	for (int i = 0; i < m_v_points.size(); i++)
-	{
-		if (i != ind && visitted[i])
+		if (!visitted[i])
 		{
-			prob[i] = (pow(pheromone[ind][i], pheromone_importance)*pow(m_v_points[ind].Count_distanse(m_v_points[i]), distance_importance))/suma;
+			float x = m_v_points[ind].Count_distanse(m_v_points[i]);
+			suma += pow(pheromone[ind][i], pheromone_importance) * pow(x, distance_importance);
+		}
+	}
+	for (int i = 0; i < m_v_points.size(); i++)//poszczególne prawdopodobieñstwa
+	{
+		if (i != ind && !visitted[i])
+		{
+			float x = m_v_points[ind].Count_distanse(m_v_points[i]);
+			prob[i] = (pow(pheromone[ind][i], pheromone_importance)*pow(x, distance_importance))/suma;
 		}
 		else
 		{
 			prob[i] = 0;
 		}
 	}
-	delete[] prob;
-	return -1;
+	std::cout << "prob" << std::endl;
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		std::cout << prob[i] << " ";
+	}
+	std::cout << std::endl;
+	double ** sections = new double*[m_v_points.size()];//tworzenie sekcji prawwdopodobieñstwa
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		sections[i] = new double[2];
+		if (i == 0)
+		{
+			sections[i][0] = 0;
+			sections[i][1] = prob[i];
+		}
+		else if (i == m_v_points.size() - 1)
+		{
+			sections[i][0] = prob[i-1];
+			sections[i][1] = 1;
+		}
+		else
+		{
+			sections[i][0] = prob[i - 1];
+			sections[i][1] = prob[i];
+		}
+	}
+	/*for (int i = 1; i < m_v_points.size() + 1; i++)
+	{
+		if (i != ind && !visitted[i])
+		{
+			sections[i] = prob[i-1] + sections[i - 1];
+		}
+		else
+		{
+			sections[i] = sections[i - 1];
+		}
+	}*/
+	std::cout << "sections" << std::endl;
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		std::cout << sections[i][0] << " " << sections[i][1]<<std::endl;
+	}
+	srand(time(NULL));
+	double draw = ((double)rand() / (double)rand()) * suma; // losuje double od 0 do suma
+	std::cout << draw << std::endl;
+	int next_vertex;
+	for (int i = 1; i < m_v_points.size(); i++)
+	{
+		if (draw > sections[i][0] && draw < sections[i][1])
+		{
+			return i;		
+		}
+	}
 }
 void Map::AntHill()
 {
 	int vertex_count = m_v_points.size();
-	std::cout << vertex_count << std::endl;
-	float ** pheromone = Initialize_Pheromone(vertex_count);
+	double ** pheromone = Initialize_Pheromone(vertex_count);
 	bool* visitted = new bool[vertex_count];
 	for (int i = 0; i < vertex_count; i++)
 	{
 		visitted[i] = false;
 	}
+	std::cout <<"next vertex = " << Next_Vertex(0, pheromone, visitted)<<std::endl;
 	/*for (int i = 0; i < vertex_count; i++)
 	{
 		for (int j = 0; j < vertex_count; j++)
