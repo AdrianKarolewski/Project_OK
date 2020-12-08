@@ -265,26 +265,29 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 	{
 		std::cout << prob[i] << " ";
 	}
-	std::cout << std::endl;
+	std::cout << std::endl; 
 	double ** sections = new double*[m_v_points.size()];//tworzenie sekcji prawwdopodobieñstwa
+	double sumado = 0;
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
-		sections[i] = new double[2];
-		if (i == 0)
-		{
-			sections[i][0] = 0;
-			sections[i][1] = prob[i];
-		}
-		else if (i == m_v_points.size() - 1)
-		{
-			sections[i][0] = prob[i-1];
-			sections[i][1] = 1;
-		}
-		else
-		{
-			sections[i][0] = prob[i - 1];
-			sections[i][1] = prob[i];
-		}
+
+			sections[i] = new double[2];
+			/*if (i == 0)
+			{
+				sections[i][0] = sumado;
+				sections[i][1] = prob[i];
+			}
+			else //if (i == m_v_points.size() - 1)
+			{*/
+				sections[i][0] = sumado;
+				sections[i][1] = sumado + prob[i];
+			//}
+			sumado += prob[i];
+			/*else
+			{
+				sections[i][0] = prob[i - 1];
+				sections[i][1] = prob[i-1]+prob[i];
+			} */
 	}
 	/*for (int i = 1; i < m_v_points.size() + 1; i++)
 	{
@@ -301,12 +304,12 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
 		std::cout << sections[i][0] << " " << sections[i][1]<<std::endl;
-	}
+	} 
 	srand(time(NULL));
-	double draw = ((double)rand() / (double)rand()) * suma; // losuje double od 0 do suma
+	double draw = ((double)((int)rand()%101) / 100.0); // losuje double od 0 do 1
 	std::cout << draw << std::endl;
 	int next_vertex;
-	for (int i = 1; i < m_v_points.size(); i++)
+	for (int i = 0; i < m_v_points.size()-1; i++)
 	{
 		if (draw > sections[i][0] && draw < sections[i][1])
 		{
@@ -314,28 +317,100 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 		}
 	}
 }
+void Map::Ant(int ind, double** pheromones)
+{
+	bool* visitted = new bool[m_v_points.size()];
+	for (int i = 0; i < m_v_points.size(); i++)
+	{
+		visitted[i] = false;
+	}
+	bool koniec = false;
+	while (!koniec)
+	{	
+		visitted[ind] = true;
+		koniec = true;
+		for (int i = 0; i < m_v_points.size(); i++)
+		{
+			if (!visitted[i])
+			{
+				koniec = false;
+				break;
+			}
+		}
+		if (koniec)
+			return;
+		int next_ind = Next_Vertex(ind, pheromones, visitted);
+
+		std::cout <<"index: "<<ind<< " next index: " << next_ind << std::endl; 
+		pheromones[ind][next_ind]+=1/m_v_points[ind].Count_distanse(m_v_points[next_ind]);
+		ind = next_ind;
+	}
+	delete visitted;
+}
 void Map::AntHill()
 {
 	int vertex_count = m_v_points.size();
+	/*double suma = 0;
+	for (int i = 0; i < 1000; i++)
+		suma += ((double)((int)rand() % 101) / 100.0);
+	std::cout << suma / 1000 << std::endl;*/
 	double ** pheromone = Initialize_Pheromone(vertex_count);
 	bool* visitted = new bool[vertex_count];
 	for (int i = 0; i < vertex_count; i++)
 	{
 		visitted[i] = false;
 	}
-	std::cout <<"next vertex = " << Next_Vertex(0, pheromone, visitted)<<std::endl;
-	/*for (int i = 0; i < vertex_count; i++)
+	//std::cout <<"next vertex = " << Next_Vertex(0, pheromone, visitted)<<std::endl;
+	//visitted[4] = true;
+	//std::cout << Next_Vertex(4, pheromone, visitted)<<std::endl;
+	for (int i = 0; i < 10; i++)
+	{
+		int ind = rand() % m_v_points.size();
+		Ant(ind, pheromone);
+	}
+	for (int i = 0; i < vertex_count; i++)
 	{
 		for (int j = 0; j < vertex_count; j++)
 		{
 			std::cout << pheromone[i][j]<<" ";
 		}
 		std::cout << std::endl;
-	}*/
+	}
+	std::vector<std::string> best_path_meta;
+	double best = 0;
+	int first = 0;
+	int vertex = first;
+	int next = first;
+	bool* been_to = new bool[vertex_count];
+	for (int i = 0; i < vertex_count; i++)
+		been_to[i] = false;
+	been_to[first] = true;
+	for (int i = 0; i < vertex_count; i++)
+	{
+		for (int j = 0; j < vertex_count; j++)
+		{
+			if (been_to[j] == false)
+			{
+				if (best < pheromone[vertex][j])
+				{
+					best = pheromone[vertex][j];
+					next = j;
+				}
+			}
+		}
+		std::cout << "teraz - " << vertex << " " << "potem - " << next << std::endl;
+		been_to[next] = true;
+		best_path_meta.push_back(m_v_points[vertex].Get_name());
+		vertex = next;
+	}
+	best_path_meta.push_back(m_v_points[first].Get_name());
+	for (int i = 0; i < m_v_points.size() + 1; i++)
+		std::cout << best_path_meta[i] << " ";
+	std::cout << std::endl;
 	for (int i = 0; i < vertex_count; i++)
 	{
 		delete[] pheromone[i];
 	}
 	delete[] pheromone;
-	delete[] visitted;
+	//delete[] visitted;
 }

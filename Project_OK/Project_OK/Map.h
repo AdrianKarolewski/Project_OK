@@ -27,5 +27,6 @@ public:
 	void AntHill();
 	double** Initialize_Pheromone(int vertex_count);
 	int Next_Vertex(int ind, double ** pheromones, bool * visitted);
+	void Ant(int ind, double** pheromones);
 };
 

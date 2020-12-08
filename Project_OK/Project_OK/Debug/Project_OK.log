@@ -12,10 +12,13 @@ C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(243,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(251,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(264,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(270,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(301,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(305,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(309,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(308,6): warning C4101: "next_vertex": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(316): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(271,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(304,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(308,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(312,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(311,6): warning C4101: "next_vertex": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(323,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(332,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(407,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(319): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
   Project_OK.vcxproj -> C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Debug\Project_OK.exe
