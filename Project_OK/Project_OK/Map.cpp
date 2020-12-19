@@ -2,9 +2,11 @@
 #include <ctime>
 #include <cstring>
 #include <fstream>
+#include <cstdlib>
 const float pheromone_INIT = 0.1;
 const float pheromone_importance = 1;
 const float distance_importance = 1;
+const float evaporation = 0.9;
 int random(int max)
 {
 	srand(time(NULL));
@@ -83,7 +85,6 @@ void Map::Del_point(std::string name)
 }
 void Map::Random_begin()
 {
-	srand(time(NULL));
 	std::swap(m_v_points[0], m_v_points[static_cast<int>(rand() % m_v_points.size())]);
 }
 void Map::Custom_begin(std::string nazwa)
@@ -260,12 +261,12 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 			prob[i] = 0;
 		}
 	}
-	std::cout << "prob" << std::endl;
+	/*std::cout << "prob" << std::endl;
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
 		std::cout << prob[i] << " ";
 	}
-	std::cout << std::endl; 
+	std::cout << std::endl; */
 	double ** sections = new double*[m_v_points.size()];//tworzenie sekcji prawwdopodobieñstwa
 	double sumado = 0;
 	for (int i = 0; i < m_v_points.size(); i++)
@@ -300,14 +301,13 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 			sections[i] = sections[i - 1];
 		}
 	}*/
-	std::cout << "sections" << std::endl;
+	/*std::cout << "sections" << std::endl;
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
 		std::cout << sections[i][0] << " " << sections[i][1]<<std::endl;
-	} 
-	srand(time(NULL));
+	} */
 	double draw = ((double)((int)rand()%101) / 100.0); // losuje double od 0 do 1
-	std::cout << draw << std::endl;
+	//std::cout << draw << std::endl;
 	int next_vertex;
 	for (int i = 0; i < m_v_points.size()-1; i++)
 	{
@@ -326,7 +326,7 @@ void Map::Ant(int ind, double** pheromones)
 	}
 	bool koniec = false;
 	while (!koniec)
-	{	
+	{
 		visitted[ind] = true;
 		koniec = true;
 		for (int i = 0; i < m_v_points.size(); i++)
@@ -340,8 +340,14 @@ void Map::Ant(int ind, double** pheromones)
 		if (koniec)
 			return;
 		int next_ind = Next_Vertex(ind, pheromones, visitted);
-
-		std::cout <<"index: "<<ind<< " next index: " << next_ind << std::endl; 
+		for (int i = 0; i < m_v_points.size(); i++)
+		{
+			for (int j = 0; j < m_v_points.size(); j++)
+			{
+				//pheromones[i][j] *= evaporation;
+			}
+		}
+		std::cout <<"index: "<<ind<< " next index: " << next_ind << std::endl;
 		pheromones[ind][next_ind]+=1/m_v_points[ind].Count_distanse(m_v_points[next_ind]);
 		ind = next_ind;
 	}
@@ -367,6 +373,7 @@ void Map::AntHill()
 	{
 		int ind = rand() % m_v_points.size();
 		Ant(ind, pheromone);
+		std::cout << std::endl;
 	}
 	for (int i = 0; i < vertex_count; i++)
 	{

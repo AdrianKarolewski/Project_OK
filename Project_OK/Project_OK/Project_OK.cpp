@@ -86,7 +86,7 @@ void gen_instance(Map& m)
 int main()
 {
     char choice;
-
+    srand(time(NULL));
     Map* k_map = new Map("Komiwoja¿er");
     while (true)
     {
