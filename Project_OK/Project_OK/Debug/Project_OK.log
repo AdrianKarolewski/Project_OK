@@ -1,6 +1,4 @@
 ﻿  Map.cpp
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(6,33): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(9,30): warning C4305: "inicjowanie": obcięcie z "double" do "float"
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(12,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(31,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(49,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
@@ -18,6 +16,6 @@ C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(332,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(343,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(345,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(414,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(418,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(319): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
   Project_OK.vcxproj -> C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Debug\Project_OK.exe

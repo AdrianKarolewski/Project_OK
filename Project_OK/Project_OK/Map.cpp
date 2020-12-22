@@ -3,10 +3,10 @@
 #include <cstring>
 #include <fstream>
 #include <cstdlib>
-const float pheromone_INIT = 0.1;
-const float pheromone_importance = 1;
-const float distance_importance = 1;
-const float evaporation = 0.9;
+const double pheromone_INIT = 0.5;
+const double pheromone_importance = 1;
+const double distance_importance = 3;
+const double evaporation = 0.9;
 int random(int max)
 {
 	srand(time(NULL));
@@ -306,12 +306,12 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 	{
 		std::cout << sections[i][0] << " " << sections[i][1]<<std::endl;
 	} */
-	double draw = ((double)((int)rand()%101) / 100.0); // losuje double od 0 do 1
+	double draw = ((double)((int)rand()%100) / 100.0); // losuje double od 0 do 1
 	//std::cout << draw << std::endl;
 	int next_vertex;
 	for (int i = 0; i < m_v_points.size()-1; i++)
 	{
-		if (draw > sections[i][0] && draw < sections[i][1])
+		if (draw >= sections[i][0] && draw < sections[i][1])
 		{
 			return i;		
 		}
@@ -344,7 +344,7 @@ void Map::Ant(int ind, double** pheromones)
 		{
 			for (int j = 0; j < m_v_points.size(); j++)
 			{
-				//pheromones[i][j] *= evaporation;
+				pheromones[i][j] *= evaporation;
 			}
 		}
 		std::cout <<"index: "<<ind<< " next index: " << next_ind << std::endl;
@@ -373,6 +373,7 @@ void Map::AntHill()
 	{
 		int ind = rand() % m_v_points.size();
 		Ant(ind, pheromone);
+		//std::cout << Next_Vertex(4, pheromone, visitted);
 		std::cout << std::endl;
 	}
 	for (int i = 0; i < vertex_count; i++)
@@ -406,9 +407,12 @@ void Map::AntHill()
 			}
 		}
 		std::cout << "teraz - " << vertex << " " << "potem - " << next << std::endl;
+		for (int i = 0; i < vertex_count; i++)
+			std::cout<<been_to[i]<<std::endl;
 		been_to[next] = true;
 		best_path_meta.push_back(m_v_points[vertex].Get_name());
 		vertex = next;
+		best = 0;
 	}
 	best_path_meta.push_back(m_v_points[first].Get_name());
 	for (int i = 0; i < m_v_points.size() + 1; i++)
