@@ -3,10 +3,9 @@
 #include <cstring>
 #include <fstream>
 #include <cstdlib>
-const double pheromone_INIT = 0.5;
-const double pheromone_importance = 1;
-const double distance_importance = 3;
-const double evaporation = 0.9;
+#include <thread>
+#include <mutex>
+std::mutex my_mutex_to_ant;
 int random(int max)
 {
 	srand(time(NULL));
@@ -20,32 +19,16 @@ std::ostream& operator<<(std::ostream& o, const Map& m)
 	}
 	return o;
 }
-bool equals_string(std::string s1, std::string s2)
-{
-	if (s1.size() != s2.size())
-	{
-		return 0;
-	}
-	else
-	{
-		for (int i = 0; i < s1.size(); i++)
-		{
-			if (s1[i] != s2[i])
-			{
-				return 0;
-			}
-		}
-	}
-	return 1;
-}
 Map::Map(std::string name) : 
 	m_name(name),
-	stopper(new Timer())
+	stopper_force(new Timer()),
+	stopper_meta(new Timer())
 {
 
 }
 void Map::Print_path_force() const
 {
+	std::cout << "Algorytm silowy" << std::endl;
 	for (int i = 0; i < best_path_force.size(); i++)
 	{
 		std::cout << best_path_force[i] << " ";
@@ -53,8 +36,21 @@ void Map::Print_path_force() const
 	if (best_path_force.size() > 0)
 	{
 		std::cout << std::endl;
-		std::cout << " czas: " << *stopper << " dystans: "<<best_distans;
+		std::cout << " czas: " << *stopper_force << " dystans: "<<best_distans_force<<std::endl;
 	}	
+}
+void Map::Print_path_meta() const
+{
+	std::cout << "Algorytm mrowkowy" << std::endl;
+	for (int i = 0; i < best_path_meta.size(); i++)
+	{
+		std::cout << best_path_meta[i].Get_name() << " ";
+	}
+	if (best_path_meta.size() > 0)
+	{
+		std::cout << std::endl;
+		std::cout << " czas: " << *stopper_meta << " dystans: " << best_distans_meta<<std::endl;
+	}
 }
 bool Map::Add_point(std::string name,int &&x, int &&y)
 {
@@ -92,7 +88,7 @@ void Map::Custom_begin(std::string nazwa)
 	int first{ -1 };
 	for (int i = 0; i < m_v_points.size(); i++)
 	{
-		if (equals_string(m_v_points[i].Get_name(), nazwa))
+		if (m_v_points[i].Get_name() == nazwa)
 		{	
 			first = i;
 		}
@@ -106,10 +102,11 @@ void Map::Custom_begin(std::string nazwa)
 		std::swap(m_v_points[0], m_v_points[first]);
 	}
 }
+// algorytm si³owy 
 void Map::Count_path()
 {
-	stopper->Reset_timer();
-	stopper->Start_timer();
+	stopper_force->Reset_timer();
+	stopper_force->Start_timer();
 	if (m_v_points.size() < 1)
 	{
 		return;
@@ -136,17 +133,19 @@ void Map::Count_path()
 				}
 			}
 		}
-		best_distans += min_distans;
+		best_distans_force += min_distans;
 		best_path_force.push_back(h_v_points[next_point].Get_name());
 		h_v_points.erase(h_v_points.begin() + current_point);
-		std::cout << std::endl;
+	
 		if (current_point < next_point)
 		{
 			next_point--;
 		}
 		current_point = next_point;
 	}
-	stopper->Stop_timer();
+	best_distans_force += h_v_points[next_point].Count_distanse(m_v_points[0]);
+	best_path_force.push_back(m_v_points[0].Get_name());
+	stopper_force->Stop_timer();
 }
 void Map::Del_all_points()
 {
@@ -225,18 +224,26 @@ void Map::Read_instance()
 {
 	double** pheromone = new double* [vertex_count];
 	for (int i = 0; i < vertex_count; ++i)
+	{
 		pheromone[i] = new double[vertex_count];
-	for (int i = 0; i<vertex_count; i++)
+	}	
+	for (int i = 0; i < vertex_count; i++)
+	{
 		for (int j = 0; j < vertex_count; j++)
 		{
 			if (i != j)
+			{
 				pheromone[i][j] = pheromone_INIT;
+			}			
 			else
+			{
 				pheromone[i][j] = 0;
+			}				
 		}
+	}
 	return pheromone;
 }
-int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
+int Map::Next_Vertex(int ind, double ** pheromone, const std::vector<bool> & visitted)
 {
 	double suma = 0;
 	double * prob = new double[m_v_points.size()];
@@ -253,146 +260,116 @@ int Map::Next_Vertex(int ind, double ** pheromone, bool * visitted)
 	{
 		if (i != ind && !visitted[i])
 		{
-			x = 1/m_v_points[ind].Count_distanse(m_v_points[i]);
-			prob[i] = (pow(pheromone[ind][i], pheromone_importance)*pow(x, distance_importance))/suma;
+			x = 1 / m_v_points[ind].Count_distanse(m_v_points[i]);
+			prob[i] = (pow(pheromone[ind][i], pheromone_importance) * pow(x, distance_importance)) / suma;
 		}
 		else
 		{
 			prob[i] = 0;
 		}
 	}
-	/*std::cout << "prob" << std::endl;
-	for (int i = 0; i < m_v_points.size(); i++)
-	{
-		std::cout << prob[i] << " ";
-	}
-	std::cout << std::endl; */
-	double ** sections = new double*[m_v_points.size()];//tworzenie sekcji prawwdopodobieñstwa
+	double draw = ((double)((int)rand() % 100) / 100.0); // losuje double od 0 do 1
 	double sumado = 0;
-	for (int i = 0; i < m_v_points.size(); i++)
+	for (int i = 0; i < m_v_points.size() - 1; i++)
 	{
-
-			sections[i] = new double[2];
-			/*if (i == 0)
-			{
-				sections[i][0] = sumado;
-				sections[i][1] = prob[i];
-			}
-			else //if (i == m_v_points.size() - 1)
-			{*/
-				sections[i][0] = sumado;
-				sections[i][1] = sumado + prob[i];
-			//}
-			sumado += prob[i];
-			/*else
-			{
-				sections[i][0] = prob[i - 1];
-				sections[i][1] = prob[i-1]+prob[i];
-			} */
-	}
-	/*for (int i = 1; i < m_v_points.size() + 1; i++)
-	{
-		if (i != ind && !visitted[i])
-		{
-			sections[i] = prob[i-1] + sections[i - 1];
-		}
-		else
-		{
-			sections[i] = sections[i - 1];
-		}
-	}*/
-	/*std::cout << "sections" << std::endl;
-	for (int i = 0; i < m_v_points.size(); i++)
-	{
-		std::cout << sections[i][0] << " " << sections[i][1]<<std::endl;
-	} */
-	double draw = ((double)((int)rand()%100) / 100.0); // losuje double od 0 do 1
-	//std::cout << draw << std::endl;
-	int next_vertex;
-	for (int i = 0; i < m_v_points.size()-1; i++)
-	{
-		if (draw >= sections[i][0] && draw < sections[i][1])
+		if ((draw >= sumado) && (draw < (sumado + prob[i])))
 		{
 			return i;		
 		}
+		sumado += prob[i];
 	}
 }
-void Map::Ant(int ind, double** pheromones)
+void Ant(int ind, double** pheromones, Map * m)
 {
-	bool* visitted = new bool[m_v_points.size()];
-	for (int i = 0; i < m_v_points.size(); i++)
-	{
-		visitted[i] = false;
-	}
+	std::vector<bool> visited(m->m_v_points.size());
+
+	std::vector<Point> points;
+	points.reserve(m->m_v_points.size() + 1);
 	bool koniec = false;
 	while (!koniec)
 	{
-		visitted[ind] = true;
+		my_mutex_to_ant.lock();
+		points.push_back(m->m_v_points[ind]);
+		my_mutex_to_ant.unlock();
+		visited[ind] = true;
 		koniec = true;
-		for (int i = 0; i < m_v_points.size(); i++)
+		for (int i = 0; i < m->m_v_points.size(); i++)
 		{
-			if (!visitted[i])
+			if (!visited[i])
 			{
 				koniec = false;
 				break;
 			}
 		}
 		if (koniec)
-			return;
-		int next_ind = Next_Vertex(ind, pheromones, visitted);
-		for (int i = 0; i < m_v_points.size(); i++)
 		{
-			for (int j = 0; j < m_v_points.size(); j++)
+			my_mutex_to_ant.lock();
+			points.push_back(m->m_v_points[0]);
+			int x, y;
+			
+			for (int i = 0; i < points.size() - 1; i++)
 			{
-				pheromones[i][j] *= evaporation;
+				x = stoi(points[i].Get_name()) - 1;
+				y = stoi(points[i + 1].Get_name()) - 1;
+				pheromones[x][y] += 1 / points[i].Count_distanse(points[i+1]);
 			}
-		}
-		std::cout <<"index: "<<ind<< " next index: " << next_ind << std::endl;
-		pheromones[ind][next_ind]+=1/m_v_points[ind].Count_distanse(m_v_points[next_ind]);
-		ind = next_ind;
+			for (int i = 0; i < m->m_v_points.size(); i++)
+			{
+				for (int j = 0; j < m->m_v_points.size(); j++)
+				{
+					pheromones[i][j] *= m->evaporation;
+				}
+			}
+			my_mutex_to_ant.unlock();
+			return;
+		}		
+		ind = m->Next_Vertex(ind, pheromones, visited);
 	}
-	delete visitted;
 }
 void Map::AntHill()
 {
+	stopper_meta->Reset_timer();
+	stopper_meta->Start_timer();
+	best_path_meta.clear();
 	int vertex_count = m_v_points.size();
-	/*double suma = 0;
-	for (int i = 0; i < 1000; i++)
-		suma += ((double)((int)rand() % 101) / 100.0);
-	std::cout << suma / 1000 << std::endl;*/
 	double ** pheromone = Initialize_Pheromone(vertex_count);
-	bool* visitted = new bool[vertex_count];
-	for (int i = 0; i < vertex_count; i++)
-	{
-		visitted[i] = false;
+
+	int ind{ 0 };
+	for (int i = 0; i < m_v_points.size(); i++)
+	{	
+		ind = rand() % m_v_points.size();
+	
+		std::thread t1(Ant, ind, pheromone, this);
+		ind = rand() % m_v_points.size();
+
+		std::thread t2(Ant, ind, pheromone, this);
+		ind = rand() % m_v_points.size();
+
+		std::thread t3(Ant, ind, pheromone, this);
+		ind = rand() % m_v_points.size();
+
+		std::thread t4(Ant, ind, pheromone, this);
+		ind = rand() % m_v_points.size();
+
+		std::thread t5(Ant, ind, pheromone, this);
+		ind = rand() % m_v_points.size();
+
+		std::thread t6(Ant, ind, pheromone, this);
+
+		t1.join();
+		t2.join();
+		t3.join();
+		t4.join();
+		t5.join();
+		t6.join();
 	}
-	//std::cout <<"next vertex = " << Next_Vertex(0, pheromone, visitted)<<std::endl;
-	//visitted[4] = true;
-	//std::cout << Next_Vertex(4, pheromone, visitted)<<std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		int ind = rand() % m_v_points.size();
-		Ant(ind, pheromone);
-		//std::cout << Next_Vertex(4, pheromone, visitted);
-		std::cout << std::endl;
-	}
-	for (int i = 0; i < vertex_count; i++)
-	{
-		for (int j = 0; j < vertex_count; j++)
-		{
-			std::cout << pheromone[i][j]<<" ";
-		}
-		std::cout << std::endl;
-	}
-	std::vector<std::string> best_path_meta;
 	double best = 0;
-	int first = 0;
-	int vertex = first;
-	int next = first;
-	bool* been_to = new bool[vertex_count];
-	for (int i = 0; i < vertex_count; i++)
-		been_to[i] = false;
-	been_to[first] = true;
+	int vertex = 0;
+	int next = 0;
+
+	std::vector<bool> been_to(vertex_count);
+	been_to[0] = 1;
+
 	for (int i = 0; i < vertex_count; i++)
 	{
 		for (int j = 0; j < vertex_count; j++)
@@ -407,21 +384,24 @@ void Map::AntHill()
 			}
 		}
 		std::cout << "teraz - " << vertex << " " << "potem - " << next << std::endl;
-		for (int i = 0; i < vertex_count; i++)
-			std::cout<<been_to[i]<<std::endl;
+		
 		been_to[next] = true;
-		best_path_meta.push_back(m_v_points[vertex].Get_name());
+		best_path_meta.push_back(m_v_points[vertex]);
 		vertex = next;
 		best = 0;
 	}
-	best_path_meta.push_back(m_v_points[first].Get_name());
-	for (int i = 0; i < m_v_points.size() + 1; i++)
-		std::cout << best_path_meta[i] << " ";
-	std::cout << std::endl;
+	////////////////////////////////////////////////////////////
+	stopper_meta->Stop_timer();
+	best_path_meta.push_back(m_v_points[0]);
+	best_distans_meta = 0;
+	
+	for (int i = 0; i < vertex_count; i++)
+	{	
+		best_distans_meta += best_path_meta[i].Count_distanse(best_path_meta[i + 1]);	
+	}
 	for (int i = 0; i < vertex_count; i++)
 	{
 		delete[] pheromone[i];
 	}
 	delete[] pheromone;
-	//delete[] visitted;
 }

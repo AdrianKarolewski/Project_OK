@@ -14,7 +14,7 @@ Point::~Point()
 {
 
 }
-std::string Point::Get_name()
+std::string Point::Get_name() const
 {
 	return m_name;
 }

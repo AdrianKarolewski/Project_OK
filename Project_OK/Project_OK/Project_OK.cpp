@@ -9,17 +9,18 @@ void print_menu(const Map & m)
     std::cout << std::endl << "Aktualne najlepsza droga " << std::endl;
     std::cout << "*********************************" << std::endl;
     m.Print_path_force();
-    std::cout << "1.Dodaj punkt do mapy" << std::endl;
+    m.Print_path_meta();
+    std::cout << std::endl << "1.Dodaj punkt do mapy" << std::endl;
     std::cout << "2.Usun punkt z mapy" << std::endl;
-    std::cout << "3.Aktualizuj droge" << std::endl;
-    std::cout << "4.Dodaj wiele wierzcholkow" << std::endl;
-    std::cout << "5.Wylosuj wierzcholek startowy" << std::endl;
-    std::cout << "6.Ustal wierzcholek startowy" << std::endl;
-    std::cout << "7.Generuj losowa instancje poczatkowa" << std::endl;
-    std::cout << "8.Usun wszystkie punkty" << std::endl;
-    std::cout << "9.Wczytaj wierzcholki z pliku dane" << std::endl;
-    std::cout << "Komenda e konczy dzialanie programu" << std::endl;
-
+    std::cout << "3.Aktualizuj droge, algorytm silowy" << std::endl;
+    std::cout << "4.Aktualizuj droge, algorytm mrowkowy" << std::endl;
+    std::cout << "5.Dodaj wiele wierzcholkow" << std::endl;
+    std::cout << "6.Wylosuj wierzcholek startowy" << std::endl;
+    std::cout << "7.Ustal wierzcholek startowy" << std::endl;
+    std::cout << "8.Generuj losowa instancje poczatkowa" << std::endl;
+    std::cout << "9.Usun wszystkie punkty" << std::endl;
+    std::cout << "10.Wczytaj wierzcholki z pliku dane.txt" << std::endl;
+    std::cout << "11.Konczy dzialanie programu" << std::endl;
 }
 void add_point(Map& m)
 {
@@ -41,7 +42,8 @@ void del_point(Map& m)
 void count_path_force_alg(Map& m)
 {
     m.Count_path();
-}void add_multiple(Map& m)
+}
+void add_multiple(Map& m)
 {
     int rows;
     int x, y;
@@ -85,7 +87,7 @@ void gen_instance(Map& m)
 }
 int main()
 {
-    char choice;
+    short choice;
     srand(time(NULL));
     Map* k_map = new Map("Komiwoja¿er");
     while (true)
@@ -94,38 +96,40 @@ int main()
         std::cin>>choice;
         switch (choice)
         {
-        case '1':
+        case 1:
             add_point(*k_map);
             break;
-        case '2':
+        case 2:
             del_point(*k_map);
             break;
-        case '3':
+        case 3:
             count_path_force_alg(*k_map);
             break;
-        case '4':
-            add_multiple(*k_map);
+        case 4:
             k_map->AntHill();
             break;
-        case '5':
+        case 5:
+            add_multiple(*k_map);
+            break;
+        case 6:
             random_begin(*k_map);
             break;
-        case '6':
+        case 7:
             custom_begin(*k_map);
             break;
-        case '7':
+        case 8:
             gen_instance(*k_map);
             break;
-        case '8':
+        case 9:
             del_all_p(*k_map);
             break;
-        case '9':
+        case 10:
             k_map->Read_instance();
         break;
         default:
             break;
         }
-        if (choice == 'e')
+        if (choice == 11)
         {
             break;
         }

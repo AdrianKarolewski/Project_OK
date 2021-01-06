@@ -8,14 +8,25 @@ class Map
 private:
 	std::vector<Point> m_v_points;
 	std::vector<std::string> best_path_force;
+	std::vector<Point> best_path_meta;
 	std::string m_name;
-	Timer* stopper;
-	double best_distans{ 0 };
+	Timer* stopper_force;
+	double best_distans_force{ 0 };
+
+	Timer* stopper_meta;
+	double best_distans_meta{ 0 };
+
+	const double pheromone_INIT = 1;
+	const double pheromone_importance = 2.2;
+	const double distance_importance = 5;
+	const double evaporation = 0.9;
+
 public:
 	friend std::ostream& operator<<(std::ostream& o, const Map & m);
-
+	friend void Ant(int, double**, Map* );
 	Map(std::string m_name);
 	void Print_path_force() const;
+	void Print_path_meta() const;
 	bool Add_point(std::string name, int &&x, int&& y);
 	void Del_point(std::string name);
 	void Del_all_points();
@@ -26,7 +37,7 @@ public:
 	void Read_instance();
 	void AntHill();
 	double** Initialize_Pheromone(int vertex_count);
-	int Next_Vertex(int ind, double ** pheromones, bool * visitted);
-	void Ant(int ind, double** pheromones);
+	int Next_Vertex(int ind, double ** pheromones, const std::vector<bool>& visitted);
+
 };
 
