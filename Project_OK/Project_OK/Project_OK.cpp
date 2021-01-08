@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Map.h"
+#include <random>
 
 void print_menu(const Map & m)
 {

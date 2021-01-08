@@ -5,7 +5,21 @@
 #include <cstdlib>
 #include <thread>
 #include <mutex>
+#include <random>
+int thread_count = 6;
 std::mutex my_mutex_to_ant;
+struct NPoint
+{
+	int x;
+	int y;
+	double add;
+	NPoint(int _x, int _y, double _add)
+	{
+		x = _x;
+		y = _y;
+		add = _add;
+	}
+};
 int random(int max)
 {
 	srand(time(NULL));
@@ -221,7 +235,15 @@ void Map::Read_instance()
 	file.close();
 }
  double** Map::Initialize_Pheromone(int vertex_count)
-{
+{	
+	 if(best_distans_force !=0)
+		pheromone_INIT = best_distans_force/vertex_count;
+	 else
+	 {
+		 Count_path();
+		 pheromone_INIT = best_distans_force / vertex_count;
+	 }
+
 	double** pheromone = new double* [vertex_count];
 	for (int i = 0; i < vertex_count; ++i)
 	{
@@ -245,6 +267,9 @@ void Map::Read_instance()
 }
 int Map::Next_Vertex(int ind, double ** pheromone, const std::vector<bool> & visitted)
 {
+	std::random_device device;
+	std::mt19937 generator(device());
+	std::uniform_int_distribution<int> distribution(0, 10000);
 	double suma = 0;
 	double * prob = new double[m_v_points.size()];
 	double x;
@@ -268,7 +293,7 @@ int Map::Next_Vertex(int ind, double ** pheromone, const std::vector<bool> & vis
 			prob[i] = 0;
 		}
 	}
-	double draw = ((double)((int)rand() % 100) / 100.0); // losuje double od 0 do 1
+	double draw = ((double)((int)distribution(generator)) / 10000.0); // losuje double od 0 do 1
 	double sumado = 0;
 	for (int i = 0; i < m_v_points.size() - 1; i++)
 	{
@@ -279,6 +304,8 @@ int Map::Next_Vertex(int ind, double ** pheromone, const std::vector<bool> & vis
 		sumado += prob[i];
 	}
 }
+std::vector<NPoint> npoints;
+double best = 0;
 void Ant(int ind, double** pheromones, Map * m)
 {
 	std::vector<bool> visited(m->m_v_points.size());
@@ -286,9 +313,12 @@ void Ant(int ind, double** pheromones, Map * m)
 	std::vector<Point> points;
 	points.reserve(m->m_v_points.size() + 1);
 	bool koniec = false;
+	double dodaj;
+	int dodaj_x, dodaj_y;
 	while (!koniec)
 	{
 		my_mutex_to_ant.lock();
+
 		points.push_back(m->m_v_points[ind]);
 		my_mutex_to_ant.unlock();
 		visited[ind] = true;
@@ -304,6 +334,7 @@ void Ant(int ind, double** pheromones, Map * m)
 		if (koniec)
 		{
 			my_mutex_to_ant.lock();
+			thread_count--;
 			points.push_back(m->m_v_points[0]);
 			int x, y;
 			
@@ -311,14 +342,27 @@ void Ant(int ind, double** pheromones, Map * m)
 			{
 				x = stoi(points[i].Get_name()) - 1;
 				y = stoi(points[i + 1].Get_name()) - 1;
-				pheromones[x][y] += 1 / points[i].Count_distanse(points[i+1]);
+				//pheromones[x][y] += 1 / points[i].Count_distanse(points[i+1]);
+				dodaj = m->Qdens / points[i].Count_distanse(points[i + 1]);
+				npoints.push_back(NPoint(x, y, dodaj));
+
 			}
-			for (int i = 0; i < m->m_v_points.size(); i++)
+			if (thread_count == 0)
 			{
-				for (int j = 0; j < m->m_v_points.size(); j++)
+				for (int i = 0; i < m->m_v_points.size(); i++)
 				{
-					pheromones[i][j] *= m->evaporation;
+					for (int j = 0; j < m->m_v_points.size(); j++)
+					{
+						pheromones[i][j] *= m->evaporation;
+					}
 				}
+				thread_count = 6;
+				for (int i = 0; i < npoints.size(); i++)
+				{
+					pheromones[npoints[i].x][npoints[i].y] += npoints[i].add;
+				}
+				npoints.clear();
+
 			}
 			my_mutex_to_ant.unlock();
 			return;
@@ -383,7 +427,7 @@ void Map::AntHill()
 				}
 			}
 		}
-		std::cout << "teraz - " << vertex << " " << "potem - " << next << std::endl;
+		//std::cout << "teraz - " << vertex << " " << "potem - " << next << std::endl;
 		
 		been_to[next] = true;
 		best_path_meta.push_back(m_v_points[vertex]);
