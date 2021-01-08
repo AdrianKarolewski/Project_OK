@@ -17,10 +17,11 @@ private:
 	double best_distans_meta{ 0 };
 
 	double pheromone_INIT = 20;
-	const double pheromone_importance = 2;
+	const double pheromone_importance = 1;
 	const double distance_importance = 5;
 	const double evaporation = 0.5;
 	const double Qdens = 2;
+	const int CC = 500;
 
 public:
 	friend std::ostream& operator<<(std::ostream& o, const Map & m);
