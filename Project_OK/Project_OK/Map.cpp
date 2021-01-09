@@ -319,7 +319,6 @@ void Ant(int ind, double** pheromones, Map * m)
 	points.reserve(m->m_v_points.size() + 1);
 	bool koniec = false;
 	double dodaj;
-	int dodaj_x, dodaj_y;
 	while (!koniec)
 	{
 		my_mutex_to_ant.lock();
@@ -464,7 +463,41 @@ void Map::AntHill()
 	{	
 		best_distans_meta += best_path_meta[i].Count_distanse(best_path_meta[i + 1]);	
 	}*/
-
+	int ind1 = -1;
+	int ind2 = -1;
+	int ind3 = -1;
+	for (int i = 0; i < best_meta_yet.size(); i++)
+	{
+		if (stoi(best_meta_yet[i].Get_name()) == 1)
+			if (ind1 == -1)
+				ind1 = i;
+			else if (ind2 == -1)
+				ind2 = i;
+			else
+				ind3 = i;
+	}
+	if (ind3 == -1)
+	{
+		int dys1, dys2;
+		dys1 = best_meta_yet[ind1].Count_distanse(best_meta_yet[ind1 - 1]) + best_meta_yet[ind1].Count_distanse(best_meta_yet[ind1 + 1]) - best_meta_yet[ind1 - 1].Count_distanse(best_meta_yet[ind1 + 1]);
+		dys2 = best_meta_yet[ind2].Count_distanse(best_meta_yet[ind2 - 1]) + best_meta_yet[ind2].Count_distanse(best_meta_yet[ind2 + 1]) - best_meta_yet[ind2 - 1].Count_distanse(best_meta_yet[ind2 + 1]);
+		if (dys1 > dys2)
+		{
+			best_meta_yet.erase(best_meta_yet.begin() + ind1);
+			best -= dys1;
+		}
+		else
+		{
+			best_meta_yet.erase(best_meta_yet.begin() + ind2);
+			best -= dys2;
+		}
+	}
+	else
+	{
+		int dys;
+		dys = best_meta_yet[ind2].Count_distanse(best_meta_yet[ind2 - 1]) + best_meta_yet[ind2].Count_distanse(best_meta_yet[ind2 + 1]) - best_meta_yet[ind2 - 1].Count_distanse(best_meta_yet[ind2 + 1]);
+		best_meta_yet.erase(best_meta_yet.begin() + ind2);
+	}
 	for (int i = 0; i < best_meta_yet.size(); i++)
 		best_path_meta.push_back(best_meta_yet[i]);
 	best_distans_meta = best;

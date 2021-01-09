@@ -10,17 +10,22 @@ C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(276,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(284,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(302,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(331,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(346,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(357,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(359,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(365,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(380,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(388,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(322,15): warning C4101: "dodaj_y": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(322,6): warning C4101: "dodaj_x": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(468,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(472,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(477,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(330,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(345,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(356,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(358,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(364,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(379,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(387,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(469,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(482,132): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(483,132): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(498,131): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(501,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(505,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(510,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  Project_OK.cpp
+C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Project_OK.cpp(92,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Generowanie kodu...
 C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(310): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
   Project_OK.vcxproj -> C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Debug\Project_OK.exe
