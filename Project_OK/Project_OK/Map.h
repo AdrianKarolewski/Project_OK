@@ -2,30 +2,44 @@
 #include "Point.h"
 #include <vector>
 #include "Timer.h"
+#include <ctime>
+#include <cstring>
+#include <fstream>
+#include <cstdlib>
+#include <thread>
+#include <mutex>
+#include <random>
 
 class Map
 {
 private:
+	std::mutex my_mutex_to_ant;
+	std::mutex mutex_to_pheromone;
+
 	std::vector<Point> m_v_points;
 	std::vector<std::string> best_path_force;
 	std::vector<Point> best_path_meta;
 	std::string m_name;
 	Timer* stopper_force;
-	double best_distans_force{ 0 };
+	double best_distans_force{ 99999999999999 };
+
+	double best{ 9999999999999 };
 
 	Timer* stopper_meta;
 	double best_distans_meta{ 0 };
 
-	double pheromone_INIT = 0.5;
+	double pheromone_INIT = 1;
 	const double pheromone_importance = 1;
 	const double distance_importance = 5;
 	const double evaporation = 0.5;
 	const double Qdens = 1;
-	const int CC = 500;
+	const int CC = 100;
+	
 
 public:
 	friend std::ostream& operator<<(std::ostream& o, const Map & m);
-	friend void Ant(int, double**, Map* );
+	friend void threadwork(Map* m, double** p);
+	void Ant(int, double**, std::vector<Point> & best_iter, double & bestlen);
 	Map(std::string m_name);
 	void Print_path_force() const;
 	void Print_path_meta() const;
@@ -39,7 +53,7 @@ public:
 	void Read_instance();
 	void AntHill();
 	double** Initialize_Pheromone(int vertex_count);
-	int Next_Vertex(int ind, double ** pheromones, const std::vector<bool>& visitted);
+	int Next_Vertex(int ind, double ** pheromones, const std::vector<bool>& visitted, double* prob);
 
 };
 

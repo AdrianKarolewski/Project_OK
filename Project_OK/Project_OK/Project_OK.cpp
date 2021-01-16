@@ -108,6 +108,7 @@ int main()
             break;
         case 4:
             k_map->AntHill();
+            
             break;
         case 5:
             add_multiple(*k_map);

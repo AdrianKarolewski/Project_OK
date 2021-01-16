@@ -1,31 +1,23 @@
 ﻿  Map.cpp
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(25,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(46,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(59,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(87,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(89,40): warning C4390: ";": znaleziono kontrolowaną pustą instrukcję; czy to było zamierzone?
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(103,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(138,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(207,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(276,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(284,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(302,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(330,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(345,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(356,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(358,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(364,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(379,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(387,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(469,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(482,132): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(483,132): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(498,131): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(501,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(505,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(510,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-  Project_OK.cpp
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Project_OK.cpp(92,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-  Generowanie kodu...
-C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Project_OK\Map.cpp(310): warning C4715: "Map::Next_Vertex”: niewszystkie ścieżki kodu zwracają wartość
-  Project_OK.vcxproj -> C:\Users\stach\Desktop\studia\Semestr 3\OK\laby\Project_OK\Project_OK\Debug\Project_OK.exe
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(6,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(40,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(70,40): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(120,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(189,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(250,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(260,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(280,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(306,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(322,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(330,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(297,10): warning C4101: 'dodaj': unreferenced local variable
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(349,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(357,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(363,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(365,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(377,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(289): warning C4715: 'Map::Next_Vertex': not all control paths return a value
+  Project_OK.vcxproj -> D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Debug\Project_OK.exe

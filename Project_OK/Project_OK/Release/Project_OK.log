@@ -1,0 +1,27 @@
+﻿  Map.cpp
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(6,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(40,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(70,40): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(120,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(189,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(250,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(260,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(280,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(306,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(322,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(330,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(297,10): warning C4101: 'dodaj': unreferenced local variable
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(349,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(359,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(365,21): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(367,22): warning C4018: '<': signed/unsigned mismatch
+D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Project_OK\Map.cpp(379,22): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  2 of 539 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Project_OK.vcxproj -> D:\Study\Studia\University\III semestr\Optymalizacja kombinatoryczna\Projekt\Project_OK\Project_OK\Release\Project_OK.exe
